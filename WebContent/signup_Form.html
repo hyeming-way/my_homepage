@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+
+<style>
+    span {
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<table border="1" align="center">
+    <tr>
+        <td colspan="2" align="center">회원가입</td>
+    </tr>
+	    <tr>
+	        <td><img src="images/ico_required.gif" art="필수">아이디</td>
+	        <td>										
+	            <input type="text" name="uID" id="uID" onkeyup="validateID();"/>
+	            <span id="id">아이디를 입력해주세요</span>
+	        </td>
+	    </tr>
+	    
+	    <tr>
+	        <td><img src="images/ico_required.gif" art="필수">비밀번호</td>
+	        <td>
+	        																				
+	            <input type="password" name="uPWD" id="uPWD" onkeyup="validatePassword();"/>
+	            <span id="pwd">비밀번호를 입력해주세요</span>
+	        </td>
+	    </tr>
+	    
+	    <tr>
+	        <td><img src="images/ico_required.gif" art="필수">비밀번호 확인</td>
+	        <td>
+	            <input type="password" name="uPWD_Confirm" id="uPWD_Confirm" onkeyup="validatePasswordConfirmation();" />
+	            <span id="pwd_confirm">비밀번호 확인란 입력해주세요</span>
+	        </td>
+	    </tr>
+	    
+	    <tr>
+	        <td><img src="images/ico_required.gif" art="필수">이름</td>
+	        <td>
+	        																
+	            <input type="text" name="uName" id="uName" onkeyup="validateName();"/>
+	            <span id="name">이름을 입력해주세요</span>
+	        </td>
+	    </tr>
+    
+    <tr>
+        <td colspan="2" align="center">
+            <input type="button" value="가입" onclick="validateForm()" />
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+function validateForm() {
+    let valid = true;
+    if (!validateName()) valid = false;
+    if (!validateID()) valid = false;
+    if (!validatePassword()) valid = false;
+    if (!validatePasswordConfirmation()) valid = false;
+   
+    if (valid) {
+        alert("회원가입 요청합니다");
+    }
+}
+
+let inputPWD = document.getElementById("uPWD");
+
+function validatePassword() {
+    let pwdError = document.getElementById("pwd");
+
+    if (inputPWD.value.trim() === '') {
+        pwdError.innerText = '비밀번호를 무조건 입력 해주세요';
+        return false;
+    } else {
+        if (inputPWD.value.length < 3 || inputPWD.value.length > 7) {
+            pwdError.innerText = '비밀번호는 3자에서 7자 사이로 입력해 주세요';
+            return false;
+        } else {
+            pwdError.innerText = '';
+            return true;
+        }
+    }
+}
+
+function validatePasswordConfirmation() {
+    let inputPWDConfirm = document.getElementById("uPWD_Confirm");
+    let pwdConfirmError = document.getElementById("pwd_confirm");
+
+    if (inputPWDConfirm.value.trim() === '') {
+        pwdConfirmError.innerHTML = "<strong>비밀번호 확인 입력바람</strong>";
+        return false;
+    } else if (inputPWD.value.trim() !== inputPWDConfirm.value.trim()) {
+        pwdConfirmError.innerHTML = "<strong>비밀번호와 비밀번호 확인이 일치 하지 않습니다</strong>";
+        return false;
+    } else {
+        pwdConfirmError.innerText = "";
+        return true;
+    }
+}
+
+function validateID() {
+    let inputID = document.getElementById("uID");
+    let idError = document.getElementById("id");
+
+    if (inputID.value.trim() === '') {
+        idError.innerText = 'ID를 입력해주세요';
+        return false;
+    } else {
+        if (inputID.value.length < 3 || inputID.value.length > 7) {
+            idError.innerText = '아이디는 3자 ~ 7자 사이로 입력 해 주세요';
+            return false;
+        } else {
+            idError.innerText = '';
+            return true;
+        }
+    }
+}
+
+function validateName() {
+    let inputName = document.getElementById("uName");
+    let nameError = document.getElementById("name");
+
+    if (inputName.value.trim() === '') {
+        nameError.innerText = '이름 입력을 정확히 해주세요.';
+        return false;
+    } else {
+        if (inputName.value.length < 3 || inputName.value.length > 7) { //사용자가 입력한 값의 길이가 3 ~ 7자 사이가 아닌 경우
+            nameError.innerText = '이름은 3자에서 7자 사이로 입력해 주세요.';
+            return false;
+        } else {
+            nameError.innerText = '';
+            return true;
+        }
+    }
+}
+</script>
+</body>
+</html>
