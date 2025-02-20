@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- 
+		좋아요 버튼 구현 사이트 참고
+		https://coder-narak.tistory.com/10
+		https://webpublishing.tistory.com/263 (아래 코드)
+	 -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<style>
+		.btn_like {
+			width: 50px; 
+			height: 50px;
+			background: url(https://umings.github.io/images/i_like_off.png) no-repeat center / 50px; 
+			cursor: pointer; 
+			border:0; 
+			font-size:0; 
+			margin:50px auto; 
+			display:block;
+		}
+		.btn_like.on {
+			background: url(https://umings.github.io/images/i_like_on.png) no-repeat center / 50px; 
+			animation: beating .5s 1 alternate;
+		}
+		@keyframes beating {
+		    0% {transform: scale(1);}
+		    40% {transform: scale(1.25);}
+		    70% {transform: scale(0.9);}
+		    100% {transform: scale(1);}
+	  	}
+	</style>
+	<script>
+		$('.btn_like').click(function(){
+			
+			$(this).toggleClass("on")
+			
+			});
+	
+	
+	</script>	
+</head>
+<body>
+	 <button class="btn_like">like</button>
+</body>
+</html>
